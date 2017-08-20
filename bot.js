@@ -1,4 +1,6 @@
 var twit = require('twit');
+var express = require('express');
+var app = express();
 var config = require('./config');
 var apiai = require('apiai');
 var APIAII = apiai('4972cb1a09044d17b37a11401ee7dfe5');
@@ -8,6 +10,8 @@ var botfunction = require('./botfunctions');
 var uploadMedia = require("./uploadimage");
 var mens, womens, categories, menstypes, sizes;
 var stream = Twitter.stream("user", { stringify_friend_ids: true });
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 stream.on('direct_message', function (directMsg) {
     var directms = directMsg.direct_message;
     var sender_id = directms.sender_id_str;
@@ -142,4 +146,6 @@ stream.on('direct_message', function (directMsg) {
 //     })
 // }
 // retweet();
-
+app.listen(process.env.PORT || 3000, function (message) {
+    console.log("Server is running on the port...");
+})
