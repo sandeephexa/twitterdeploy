@@ -146,6 +146,9 @@ stream.on('direct_message', function (directMsg) {
 //     })
 // }
 // retweet();
+app.get("/",function(req,res){
+    res.send("Localhost Server is  running!!!");
+});
 app.listen(process.env.PORT || 3000, function (message) {
     console.log("Server is running on the port...");
 })
