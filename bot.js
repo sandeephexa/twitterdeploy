@@ -33,6 +33,7 @@ stream.on('direct_message', function (directMsg) {
             // console.log(response.result);
             //console.log(text + "= >" + responseQuery);
             if (responseQuery == "hi") {
+                mens='', womens='', categories='', menstypes='', sizes='';
                 var image_media = JSON.parse(uploadMedia.TwitterUpload());
                 paramssend = botfunction.WelcomeParams(sender_id, screen_name, image_media.media_id_string);
                 Twitter.post("direct_messages/events/new", paramssend, function (err, data, response) {
