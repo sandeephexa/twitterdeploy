@@ -118,6 +118,11 @@ stream.on('direct_message', function (directMsg) {
                     stream.start();
                 })
             }
+            else 
+            {
+             stream.stop();
+             stream.start();    
+            }
         });
         request.on('error', function (error) {
             //        console.log(error);
