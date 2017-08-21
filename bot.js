@@ -32,7 +32,7 @@ stream.on('direct_message', function (directMsg) {
             let result = response;
             // console.log(response.result);
             //console.log(text + "= >" + responseQuery);
-            if (responseQuery == "hi") {
+            if (text == "hi") {
                 mens='', womens='', categories='', menstypes='', sizes='';
                 var image_media = JSON.parse(uploadMedia.TwitterUpload());
                 paramssend = botfunction.WelcomeParams(sender_id, screen_name, image_media.media_id_string);
@@ -41,77 +41,77 @@ stream.on('direct_message', function (directMsg) {
                     stream.start();
                 })
             }
-            else if (responseQuery == "Mens") {
+            else if (text == "Mens") {
                 categories = "Mens";
-                paramssend = botfunction.CategoryParams(sender_id, responseQuery);
+                paramssend = botfunction.CategoryParams(sender_id, text);
                 Twitter.post("direct_messages/events/new", paramssend, function (err, data, response) {
                     stream.stop();
                     stream.start();
                 })
             }
-            else if (responseQuery == "Womens") {
+            else if (text == "Womens") {
                 categories = "Womens";
-                paramssend = botfunction.WomensParams(sender_id, responseQuery);
+                paramssend = botfunction.WomensParams(sender_id, text);
                 Twitter.post("direct_messages/events/new", paramssend, function (err, data, response) {
                     stream.stop();
                     stream.start();
                 })
             }
-            else if (responseQuery == "Childrens") {
+            else if (text == "Childrens") {
                 categories = "Childrens";
                 // paramssend = botfunction.ChildrensParams(sender_id, responseQuery);
             }
-            else if (responseQuery == "Tshirts") {
+            else if (text == "Tshirts") {
                 mens = "Tshirts";
-                paramssend = botfunction.TshirtParams(sender_id, responseQuery);
+                paramssend = botfunction.TshirtParams(sender_id, text);
                 Twitter.post("direct_messages/events/new", paramssend, function (err, data, response) {
                     stream.stop();
                     stream.start();
                 })
             }
-            else if (responseQuery == "Trousers" || responseQuery == "Jeans" || responseQuery == "Shirts" || responseQuery == "Shorts") {
-                mens = responseQuery;
-                paramssend = botfunction.SizeParams1(sender_id, responseQuery);
+            else if (text == "Trousers" || text == "Jeans" || text == "Shirts" || text == "Shorts") {
+                mens = text;
+                paramssend = botfunction.SizeParams1(sender_id, text);
                 Twitter.post("direct_messages/events/new", paramssend, function (err, data, response) {
                     stream.stop();
                     stream.start();
                 })
             }
-             else if (responseQuery == "Kurti" || responseQuery == "Sari" || responseQuery == "Salwar" || responseQuery == "Lehenga") {
-                womens = responseQuery;
-                paramssend = botfunction.SizeParams1(sender_id, responseQuery);
+             else if (text == "Kurti" || text == "Sari" || text == "Salwar" || text == "Lehenga") {
+                womens = text;
+                paramssend = botfunction.SizeParams1(sender_id, text);
                 Twitter.post("direct_messages/events/new", paramssend, function (err, data, response) {
                     stream.stop();
                     stream.start();
                 })
             }
-            else if (responseQuery == "Grey" || responseQuery == "Black" || responseQuery == "Blue") {
-                paramssend = botfunction.SizeParams(sender_id, responseQuery);
-                menstypes = responseQuery;
+            else if (text == "Grey" || text == "Black" || text == "Blue") {
+                paramssend = botfunction.SizeParams(sender_id, text);
+                menstypes = text;
                 Twitter.post("direct_messages/events/new", paramssend, function (err, data, response) {
                     stream.stop();
                     stream.start();
                 })
-            } else if ((responseQuery == "XL" || responseQuery == "S" || responseQuery == "M"
-                || responseQuery == "L" || responseQuery == "XS" || responseQuery == "2XL" || responseQuery == "3XL"
-                || responseQuery == "4XL" || responseQuery == "5XL" || responseQuery == "6XL") && mens == "Tshirts") {
+            } else if ((text == "XL" || text == "S" || text == "M"
+                || text == "L" || text == "XS" || text == "2XL" || text == "3XL"
+                || text == "4XL" || text == "5XL" || text == "6XL") && mens == "Tshirts") {
                 // console.log(JSON.stringify(result.result.fulfillment));
                 // fs.writeFileSync("./data.json",JSON.stringify(result.result),"utf8");
-                sizes = responseQuery;
-                paramssend = botfunction.ResultParams(sender_id, categories, mens, menstypes, responseQuery);
+                sizes = text;
+                paramssend = botfunction.ResultParams(sender_id, categories, mens, menstypes, text);
                 Twitter.post("direct_messages/events/new", paramssend, function (err, data, response) {
                     console.log(err);
                     stream.stop();
                     stream.start();
                 })
             }
-            else if ((responseQuery == "XL" || responseQuery == "S" || responseQuery == "M"
-                || responseQuery == "L" || responseQuery == "XS" || responseQuery == "2XL" || responseQuery == "3XL"
-                || responseQuery == "4XL" || responseQuery == "5XL" || responseQuery == "6XL") && (mens == "Trousers" || mens == "Jeans" || mens == "Shirts" || mens == "Shorts" || womens == "Kurti" || womens == "Sari" || womens == "Salwar" || womens == "Lehenga")) {
+            else if ((text == "XL" || text == "S" || text == "M"
+                || text == "L" || text == "XS" || text == "2XL" || text == "3XL"
+                || text == "4XL" || text == "5XL" || text == "6XL") && (mens == "Trousers" || mens == "Jeans" || mens == "Shirts" || mens == "Shorts" || womens == "Kurti" || womens == "Sari" || womens == "Salwar" || womens == "Lehenga")) {
                 // console.log(JSON.stringify(result.result.fulfillment));
                 // fs.writeFileSync("./data.json",JSON.stringify(result.result),"utf8");
-                sizes = responseQuery;
-                paramssend = botfunction.ResultParams1(sender_id, categories, mens || womens, responseQuery);
+                sizes = text;
+                paramssend = botfunction.ResultParams1(sender_id, categories, mens || womens, text);
                 Twitter.post("direct_messages/events/new", paramssend, function (err, data, response) {
                     console.log(err);
                     stream.stop();
